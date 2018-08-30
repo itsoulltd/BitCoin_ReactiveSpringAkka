@@ -1,6 +1,6 @@
 package com.itsoul.lab.bitcoin.akka.cmd;
 
-import com.itsoul.lab.bitcoin.akka.actors.Poller;
+import com.itsoul.lab.bitcoin.akka.actors.PriceTicker;
 import com.itsoul.lab.bitcoin.akka.actors.PriceRequestor;
 
 import akka.actor.ActorRef;
@@ -40,8 +40,8 @@ public class AkkaCMDLineUI implements CommandLineRunner {
     final ActorRef printer = system.actorOf(Printer.props(), "printer");
     final ActorRef priceRequestor = system.actorOf(PriceRequestor.props(printer, coinbaseService), "requestor");
 
-    final ActorRef poller_USD = system.actorOf(Poller.props("BTC-USD", priceRequestor), "poller-USD");
-    final ActorRef poller_ETH = system.actorOf(Poller.props("ETH-USD", priceRequestor), "poller-ETH");
+    final ActorRef poller_USD = system.actorOf(PriceTicker.props("BTC-USD", priceRequestor), "poller-USD");
+    final ActorRef poller_ETH = system.actorOf(PriceTicker.props("ETH-USD", priceRequestor), "poller-ETH");
 
   }
 
