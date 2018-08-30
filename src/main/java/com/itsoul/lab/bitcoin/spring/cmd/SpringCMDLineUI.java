@@ -1,6 +1,6 @@
 package com.itsoul.lab.bitcoin.spring.cmd;
 
-import com.itsoul.lab.bitcoin.spring.observers.ConsolePrintObserver;
+import com.itsoul.lab.bitcoin.spring.observers.Printer;
 import com.itsoul.lab.bitcoin.spring.services.CoinbaseService;
 import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
@@ -36,11 +36,11 @@ public class SpringCMDLineUI implements CommandLineRunner {
 
         Observable.interval(3000, TimeUnit.MILLISECONDS, Schedulers.io())
                 .map(tick -> coinbaseService.getCryptoPrice("BTC-USD"))
-                .subscribe(new ConsolePrintObserver());
+                .subscribe(new Printer());
 
         Observable.interval(3000, TimeUnit.MILLISECONDS, Schedulers.io())
                 .map(tick -> coinbaseService.getCryptoPrice("ETH-USD"))
-                .subscribe(new ConsolePrintObserver());
+                .subscribe(new Printer());
 
     }
 }

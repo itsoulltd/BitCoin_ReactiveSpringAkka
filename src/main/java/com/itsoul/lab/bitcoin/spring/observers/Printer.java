@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
-public class ConsolePrintObserver extends DefaultObserver {
+public class Printer extends DefaultObserver {
     @Override
     public void onNext(Object o) {
         Mono<CoinbaseResponse> response = (Mono<CoinbaseResponse>)o;
