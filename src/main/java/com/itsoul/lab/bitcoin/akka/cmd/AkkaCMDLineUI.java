@@ -40,7 +40,7 @@ public class AkkaCMDLineUI implements CommandLineRunner {
     final ActorRef printer = system.actorOf(Printer.props(), "printer");
     final ActorRef priceRequestor = system.actorOf(PriceRequestor.props(printer, coinbaseService), "requestor");
 
-    final ActorRef poller = system.actorOf(Poller.props("BTC-USD", priceRequestor), "poller");
+    final ActorRef poller_USD = system.actorOf(Poller.props("BTC-USD", priceRequestor), "poller-USD");
     final ActorRef poller_ETH = system.actorOf(Poller.props("ETH-USD", priceRequestor), "poller-ETH");
 
   }
